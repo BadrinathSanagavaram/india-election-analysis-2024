@@ -1,6 +1,6 @@
 import pandas as pd
 import numpy as np
-import matplotlib as plt
+import matplotlib.pyplot as plt
 import seaborn as sns
 
 # Reading the Data
@@ -41,3 +41,46 @@ df['Margin'] = df['Margin'].astype(int) # converting the margin column to int
 df.dtypes # re-checking the datatypes of all other columns
 # checking whether the changes have been made in that particular datapoint 493 or not 
 df[df['Constituency'] == 'Surat']
+
+df['Status'].unique()
+df[df['Status'] == 'Uncontested']
+plt.figure(figsize=(10, 10))
+plt.boxplot(df['Margin'],labels=['Margin'])
+plt.title("Box Plot for Margin")
+plt.show()
+
+pd.set_option('Display.max_columns', 5)
+pd.set_option('Display.max_rows', 500)
+df.sort_values(by = 'Margin' ,ascending=False, inplace=True)
+
+# Creating a new dataframe for Leading party and number of seats won along with useful data vizualizations
+df_leading_party=df.groupby("Leading Party")
+df_number_seats_won_by_each_party = df_leading_party['Status'].count().sort_values(ascending=False)
+df_number_seats_won_by_each_party = pd.DataFrame(df_number_seats_won_by_each_party)
+df_number_seats_won_by_each_party.rename(columns={'Status': 'Seats Won'}, inplace=True) # renaming status column to seats won column
+df_number_seats_won_by_each_party.columns
+df_number_seats_won_by_each_party
+
+# Calculating the length of dataset of df_number_seats_won_by_each_party
+len(df_number_seats_won_by_each_party)
+
+# I want to number of the serial column to start from 1 instead of 0 if we reset the Dataframe we will get numbering from 0 so creating a list and then adding the list in the dataframe
+# creating a list of the length of df_number_seats_won_by_each_party
+column_index = []
+for i in range(1,43):
+    column_index.append(i)
+column_index
+df_number_seats_won_by_each_party["S.No"] = column_index # adding the index values starting from 1 to the dataframe
+df_number_seats_won_by_each_party.reset_index(inplace=True) # resetting the index and then setting it to S.No
+df_number_seats_won_by_each_party.set_index('S.No', inplace=True) # setting up the index to S.NO
+df_number_seats_won_by_each_party.head(10).plot(kind="barh", x='Leading Party' ,y = 'Seats Won') # creating a basic horizontal box plots for visualization
+plt.show()
+
+#Checking the number of constituencies which have margin's greater than the median margin in the election of 2024 
+len(df[df['Margin'] >= df['Margin'].median()])
+
+#Grouping it by statewise and displyaing the count
+df['Constituency'] = df['Constituency'].str.lower()
+
+for i in df['Constituency']:
+    print(i)
