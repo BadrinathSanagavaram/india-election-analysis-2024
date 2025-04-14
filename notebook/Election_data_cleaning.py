@@ -84,4 +84,4 @@ df['Constituency'] = df['Constituency'].str.lower()
 df['Constituency']
 
 df.to_csv("/Users/badrinathsanagavaram/Desktop/GitHUB practice folder/Python Pandas Projects/india-election-analysis-2024/data/elections-data-2024-cleaned.csv", index=False)
-
+df_number_seats_won_by_each_party.to_csv("/Users/badrinathsanagavaram/Desktop/GitHUB practice folder/Python Pandas Projects/india-election-analysis-2024/data/elections-party_wise_results.csv", index=False)
