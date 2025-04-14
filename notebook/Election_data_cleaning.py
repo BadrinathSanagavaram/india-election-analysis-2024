@@ -34,7 +34,7 @@ df.dtypes
 
 # we have to convert Margin column into numric column because we have perform certain transformations on that in order to do that we need to replace '-' with a value in the previous elections Surat was won with a margin of 5,43,000 votes by the Same BJP which won this seat too so in order to replace this we can exchange with that value
 
-df['Margin'].replace('5,43,000', 543000, inplace=True)
+df['Margin'].replace('-', 543000, inplace=True)
 df[df['Margin'] == '-'] # checking whether the value is still present in the Dataframe or not
 
 df['Margin'] = df['Margin'].astype(int) # converting the margin column to int
