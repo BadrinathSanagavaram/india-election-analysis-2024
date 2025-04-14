@@ -82,5 +82,3 @@ len(df[df['Margin'] >= df['Margin'].median()])
 #Grouping it by statewise and displyaing the count
 df['Constituency'] = df['Constituency'].str.lower()
 
-for i in df['Constituency']:
-    print(i)
