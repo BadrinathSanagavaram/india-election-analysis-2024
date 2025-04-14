@@ -1,0 +1,7 @@
+{
+    "python.analysis.aiCodeActions": {
+
+    },
+    "chat.commandCenter.enabled": false,
+    "chat.agent.enabled": false
+}
