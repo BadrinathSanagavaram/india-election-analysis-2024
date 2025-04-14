@@ -81,4 +81,7 @@ len(df[df['Margin'] >= df['Margin'].median()])
 
 #Grouping it by statewise and displyaing the count
 df['Constituency'] = df['Constituency'].str.lower()
+df['Constituency']
+
+df.to_csv("/Users/badrinathsanagavaram/Desktop/GitHUB practice folder/Python Pandas Projects/india-election-analysis-2024/data/elections-data-2024-cleaned.csv", index=False)
 
